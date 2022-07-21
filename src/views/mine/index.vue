@@ -13,7 +13,7 @@
         </div>
       </div>
       <div v-if="!isLogin" class="">
-        <span>未登录，请先去<span @click="goLogin" class="login-btn">登录</span></span>
+        <span>未登录，请先去 <SmallBtn @click="goLogin" inline /></span>
       </div> 
     </div> 
 
@@ -66,6 +66,7 @@ import { ref } from 'vue';
 import { Toast, Dialog } from 'vant'; 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import SmallBtn from '../../components/buttons/index';
 
 const store = useStore();
 const router = useRouter();
@@ -81,7 +82,7 @@ const goFavorite = () => {
   router.push('/favorite');
 } 
 
-const goLogin = () => {
+const goLogin = () => { 
   router.push('/login');
 }
 
@@ -203,15 +204,6 @@ $color: #f46b84;
     }
     
   }
-}
-.login-btn{
-  display: inline-block;
-  padding: 0.1rem 0.25rem;
-  font-size: 0.3rem;
-  color: #fff;
-  background: $color;
-  border-radius: 0.1rem;
-  margin-left: 0.15rem;
 }
 .empty{
   background: #fff; 

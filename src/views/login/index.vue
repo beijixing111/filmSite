@@ -6,6 +6,7 @@
         <input type="text" placeholder="用户名" 
           v-model='userName' autoComplete="off"  
         />
+        <div class="line"></div>
         <i class="clear" :style="{display: userName.length > 0 ? 'flex' : 'none'}"
           @click='onClear'
         >×</i>
@@ -17,6 +18,7 @@
           @focus='onPwdFocus'
           @blur='onPwdBlur'
         />
+        <div class="line"></div>
         <i class="clear rig" 
           :style="{display: password.length > 0 ? 'flex' : 'none'}"
           @click='onClearPassword'
@@ -24,11 +26,14 @@
         <a class="forget-pw">忘记密码</a>
       </div>
     </form>
-    <button type="button" :class="['login-btn', highlight? ' highlight' : '']" 
-      @click="onLogin">登&nbsp;&nbsp;录</button>
-    
-    <button type="button" class="login-btn test" @click="onFill">一键填充账号密码</button>
 
+    <div style="padding: 0.3rem;">
+      <BigBtn :disabled='!highlight' 
+        background="#f86698" @click="onLogin" 
+        style="margin-bottom: 0.4rem" 
+      />
+      <BigBtn background="#afa5a5" @click="onFill">一键填充账号密码</BigBtn>
+    </div>
 
   </div>
 </template>
@@ -36,9 +41,11 @@
 <script setup> 
 
 import { ref, watch } from 'vue'; 
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+
 import { useStore } from 'vuex';
 import { Toast } from 'vant'
+import { BigBtn } from '../../components/buttons';
 import * as Api from './api'; 
 
 const userName = ref('');
@@ -46,6 +53,7 @@ const password = ref('');
 const highlight = ref(false);
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 
 const onPwdBlur = () => {
@@ -100,7 +108,9 @@ const onLogin = async () => {
     if(res.errorCode == 0) {
       console.log(res); 
       store.commit('login', res.data);
-      router.replace('/mine');
+      const query = route.query;
+      let path = query.redirectPath ? query.redirectPath : '/mine';
+      router.replace(path);
     }
   } catch (err) {
     console.log(err);
@@ -130,8 +140,7 @@ input{
 	.login-item{
 		width: 88%; height: 1rem;
     line-height: 1.2;
-		overflow: hidden; margin: 20px auto;
-		border-bottom: 0.01rem solid #e2e2e2;
+		overflow: hidden; margin: 20px auto; 
 		display: flex; align-items: center;
 		flex-direction: row;
 		position: relative; 
@@ -154,16 +163,26 @@ input{
 			&:-webkit-autofill{
 				box-shadow: 0 0 0px 1000px white inset; 
 			}
-      &:focus{
+      &:focus + .line{
         /* border: ; */
+        background: linear-gradient(90deg,#fab3b3,#ffbcb3 73%, #f86698);
+        box-shadow: 0 0 0.05rem #f86698;
       }
 		}
+    .line{ 
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.01rem;
+      background: #e2e2e2;
+    }
 		.clear{
 			position: absolute; right: 0; 
 			display: flex; width: 0.5rem; height: 0.5rem;
 			justify-content: center; cursor: pointer;
       align-items: flex-end;  
-			font-size: 30px; color: #ccc;
+			font-size: 20px; color: #ccc;
 			&.rig{
 				right: 1.75rem;
 			}
@@ -176,23 +195,7 @@ input{
 			border-left: 0.01rem solid #ccc; 
 			height: 26px; line-height: 26px;
 		}
-	}
-	.login-btn{
-		width: 88%; height: 0.8rem; line-height: 0.8rem;
-		display: block; border-radius: 0.5rem;  
-		color: #fff; font-size: 0.3rem; background: #03A9F4; 
-		background-image: linear-gradient(90deg,#fab3b3,#ffbcb3 73%,#ffcaba);
-    box-shadow: 0 0.1rem 0.2rem 0 rgba(255,62,62,.2);
-		margin: 0 auto; border: none; 
-		outline: none; cursor: pointer;
-    margin-bottom: 0.4rem;
-    &.test{
-      background: #bcb8b8;
-    }
-		&.highlight{
-			background: #e73d77;
-		}
-	}
+	} 
 }
 
 </style>

@@ -4,11 +4,14 @@
 </template>
 
 <script setup >
-// import { Toast } from 'vant';
+import { Dialog } from 'vant';
 import { ref, computed } from 'vue'; 
 import { useStore } from 'vuex';
+import { useRouter, useRoute } from 'vue-router';
 
 const store = useStore();
+const router = useRouter();
+const route = useRoute();
 
 const props = defineProps({
   favId: Number,
@@ -42,7 +45,22 @@ const allfavNumber = computed(() => {
 })
 
 const onFavorite = () => { 
-  
+  if(!store.getters.getUserIsLogin){
+    Dialog.confirm({
+      title: '提示',
+      message: `未登录，前去登录？`,
+      confirmButtonText: '去登录',
+      confirmButtonColor: '#f46b84'
+    }).then(() => {
+      router.push({
+        path: '/login',
+        query: {
+          redirectPath: route.path
+        }
+      });
+    })
+    return;
+  }
   if(!isFav.value) { 
     store.dispatch('addFavorite', {
       id: props.favId,

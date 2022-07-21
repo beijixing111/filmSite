@@ -1,7 +1,8 @@
 <template>
   <div class="fixed-top"> 
     <p>收藏总数：{{total}}</p>
-    <span class="all-btn" type="primary" v-show="total > 0" @click="onAllClear">全删</span>
+    <SmallBtn class="all-btn" v-show="total > 0"  @click="onAllClear" >全删</SmallBtn>
+    <!-- <span  type="primary" ></span> -->
   </div>
   <div class="favorite-page"> 
     <van-list
@@ -28,6 +29,7 @@ import { ref } from 'vue';
 import { Dialog } from 'vant';
 import { useStore } from 'vuex'; 
 import { useRouter } from 'vue-router';  
+import SmallBtn from '../../components/buttons';
 
 const store = useStore();
 const router = useRouter();
