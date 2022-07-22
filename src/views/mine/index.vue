@@ -2,8 +2,8 @@
   <div class="mine-page">
     <div class="user-info" >
       <div class="avatar" >
-        <van-image class="avatar-img" v-if="isLogin" fit="cover" round 
-          :src="userInfo.picture"
+        <van-image class="avatar-img" fit="cover" round 
+          :src="isLogin ? userInfo.picture : defaultAvatar"
         />
       </div>
       <div class="info" v-if="isLogin">
@@ -67,11 +67,12 @@ import { Toast, Dialog } from 'vant';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import SmallBtn from '../../components/buttons/index';
+import defaultAvatar from '../../assets/images/default_avatar.png';
 
 const store = useStore();
 const router = useRouter();
 
-const userInfo = ref(store.state.userInfo); 
+const userInfo = ref(store.state.userInfo);  
  
 const isLogin = ref(store.getters.getUserIsLogin);
  
@@ -105,6 +106,7 @@ const goLogout = () => {
 <style lang="scss" scoped>
 $distance: 0.25rem;
 $color: #f46b84;
+$linkColor: #03a9f4;
 
 .mine-page{
   background: #fafafa;
@@ -138,7 +140,7 @@ $color: #f46b84;
       .nickName{
         font-size: 0.34rem;
         font-weight: bolder;
-        color: #666;
+        color: #333;
         margin-bottom: 0.2rem;
       }
       .status{  
@@ -169,7 +171,7 @@ $color: #f46b84;
         height: 1rem;
         margin-left: 0.9rem; 
         font-size: 0.3rem;
-        color: #888;
+        color: #333;
         border-bottom: 0.01rem solid #dfdfdf;
         &:last-child{
           border: 0;
@@ -233,7 +235,7 @@ $color: #f46b84;
     font-size: 0.3rem; 
     padding: 0.15rem 0; 
     a{
-      color: #677edd;
+      color: $linkColor;
     }
   } 
 }

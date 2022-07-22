@@ -1,6 +1,6 @@
 <template>
   <div class="login-content">
-    <h3>登录</h3>
+    <h3>登&nbsp;&nbsp;&nbsp;&nbsp;录</h3>
     <form>
       <div class="login-item">
         <input type="text" placeholder="用户名" 
@@ -32,7 +32,7 @@
         background="#f86698" @click="onLogin" 
         style="margin-bottom: 0.4rem" 
       />
-      <BigBtn background="#afa5a5" @click="onFill">一键填充账号密码</BigBtn>
+      <BigBtn background="#686363" @click="onFill">一键填充账号密码</BigBtn>
     </div>
 
   </div>
@@ -131,9 +131,8 @@ input{
 .login-content{
 	padding-top: 0.6rem;
   h3{
-    font-size: 0.36rem; font-weight: bold; 
-    letter-spacing: 0.3rem;
-    color: #888; text-align: center;
+    font-size: 0.36rem; font-weight: bold;  
+    color: #333; text-align: center;
     margin-bottom: 0.6rem;
   }
 

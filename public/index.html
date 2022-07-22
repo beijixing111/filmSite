@@ -12,13 +12,19 @@
     <!-- <script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script> -->
     <script>
       // new VConsole();
-
+      var reloadPage = function() {
+        var reloadNum = Number(sessionStorage.getItem('reloadNum'));
+        if(reloadNum !== 1) {
+          window.location.reload(true);
+          sessionStorage.setItem('reloadNum', 1);
+        }
+      }();
       !function(e,n){
         var t=e.documentElement,
           i="orientationchange"in window?"orientationchange":"resize",
           o=function(){
             var e=t.clientWidth;
-            e&&(t.style.fontSize=750<=e? "100px": e/750*100+"px")
+            e&&(t.style.fontSize=750<=e? "80px": e/750*100+"px")
           };
         e.addEventListener&&(o(),n.addEventListener(i,o,!1),
         e.addEventListener("DOMContentLoaded",o,!1))

@@ -1,20 +1,27 @@
 import Film from '../views/film/index';
 import NotFound from '../views/notfound';
 
+// {
+//   path: '/film',
+//   name: 'film',  
+//   component: Film,
+//   meta: {
+//     title: '电影',
+//     keepAlive: true,
+//   }
+// },
+
 export default [
     {
       path: '/',
-      redirect: '/film', 
-    },
-    {
-      path: '/film',
-      name: 'film',  
+      name: 'film',
+      // redirect: '/film', 
       component: Film,
       meta: {
         title: '电影',
         keepAlive: true,
       }
-    },
+    }, 
     {
       path: '/filmdetail/:id',
       name: 'film-detail',  

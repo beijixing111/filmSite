@@ -1,7 +1,7 @@
 
 <template>
-  <van-tabbar route  v-show="show" :active-color='activeColor'>
-    <van-tabbar-item replace to="/film" icon="home-o">电影</van-tabbar-item>
+  <van-tabbar route  v-show="show" :active-color='activeColor' :style="{'z-index': (!isMobileAgent ? 1999 : 9999)}">
+    <van-tabbar-item replace to="/" icon="home-o">电影</van-tabbar-item>
     <van-tabbar-item replace to="/mine" icon="user-o">我的</van-tabbar-item>
   </van-tabbar>
   <div v-show="!show" class="back-btn" @click="onBack" >
@@ -14,6 +14,7 @@
 // 
 import { ref, watch, onMounted } from 'vue'; 
 import { useRoute, useRouter } from 'vue-router'; 
+import { isMobile } from '../../common/utils';
 
 const route = useRoute();
 const router = useRouter();
@@ -23,6 +24,7 @@ const activeColor = ref('#f46b84');
 const showTabbarPaths = ['/', '/film', '/mine'];
 
 const show = ref(true); 
+const isMobileAgent = ref(isMobile());
 
 const setShow = (path) => { 
   let hasPath = showTabbarPaths.find(item => path === item);

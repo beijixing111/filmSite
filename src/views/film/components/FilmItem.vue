@@ -3,7 +3,7 @@
     <div class="film-container"> 
       <div class="poster-box" @click="goDetail">
         <div class="title" >{{film.filmName}}</div>
-        <van-image class="poster" lazy-load fit="cover" :src="posterUrl" />
+        <van-image class="poster" lazy-load fit="cover" :src="film.poster || posterUrl" />
       </div> 
     </div>
     <div class="film-footer">
@@ -84,7 +84,7 @@ export default defineComponent({
   .title{
     position: absolute;
     top: 0; left: 0;
-    z-index: 9999;
+    z-index: 100;
     width: 100%; 
     padding: 0.15rem 0.2rem;
     font-size: 0.34rem;
@@ -117,8 +117,8 @@ export default defineComponent({
         margin-right: 0.2rem;
       } 
       .film-desc{
-        color: #888;
-        font-size: 0.32rem;
+        color: #333;
+        font-size: 0.28rem;
         span{
           margin-right: 0.15rem;
         }

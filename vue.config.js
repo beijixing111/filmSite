@@ -1,6 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 const { VantResolver } = require('unplugin-vue-components/resolvers');
 const ComponentsPlugin = require('unplugin-vue-components/webpack');
+// const timestamp = Date.now(); //给打包后的资源添加时间戳
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -16,8 +17,9 @@ module.exports = defineConfig({
 		host: '0.0.0.0',
 		port: '8080',
     proxy: {
-      "/api": {   
-        target: 'http://localhost:3000',
+      "/api": {  
+        
+        // target: 'http://localhost:3000',
         changeOrigin: true,
         ws: true,
         // pathRewrite: {

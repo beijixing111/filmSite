@@ -239,6 +239,7 @@ export default defineComponent({
     }
 
     const playing = () => { 
+      loadError.value = false;
       let videoEl = hlsVideo.value; 
       // console.log('playing', videoEl.paused);
       if(videoEl.paused){
@@ -502,7 +503,7 @@ $margin: 0.25rem;
       color: #fff;
       font-size: 0.4rem;
       &.fi-play{
-        margin-left: 0.02rem;
+        margin-left: 0.05rem;
       }
       &.fi-spin{
         font-size: 0.44rem;

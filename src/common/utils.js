@@ -76,6 +76,7 @@ export const getStorage = (key, type = 1, isToObject = true) => {
   // console.log(key, type, isToObject, typeStr);
   const storage = window[typeStr];
   let val = storage.getItem(key);
+  if(!val) return null;
   if(isToObject) {
     return JSON.parse(val);
   }

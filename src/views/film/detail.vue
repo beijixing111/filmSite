@@ -4,6 +4,7 @@
       <MimyzVideo 
         :videoId="filmData.id"
         :videoUrl='filmData.filmUrl'
+        :videoOptions="filmData.poster ? {poster: filmData.poster} : {}"
         @play="onPlay"
         @fullScreenPlay="onFullScreen"
       />
@@ -94,7 +95,7 @@ const onFullScreen = () => {
     align-items: center;
   }
   p{
-    font-size: 0.3rem; color: #888;
+    font-size: 0.28rem; color: #888;
     line-height: 1.6;
     margin-bottom: 0.1rem;
     &.indent{

@@ -20,12 +20,18 @@ const runToast = (msg, time = 3) => {
 const cacheFavoriteList = (list) => {
   setStorage(favoriteListKey, list);
 }
+ 
+
+const getFavoriteList = () => {
+  if(!getStorage(config._userInfoKey_)) return [];
+  return getStorage(favoriteListKey) || [];
+}
 
 export default createStore({
   state: {
     userInfo: getStorage(config._userInfoKey_) || {},
     filmList: [], // 已加载的filmList
-    favoriteList: getStorage(favoriteListKey) || []
+    favoriteList: getFavoriteList()
   },
   getters: {
     getFavoriteTotal(state) {
@@ -57,15 +63,17 @@ export default createStore({
       cacheFavoriteList([]);
     },
     login(state, payload) {
-      console.log(payload);
+      // console.log(payload);
       setStorage(config._userInfoKey_, payload.userInfo);
       setStorage(config._loginToken_, 'Bearer ' + payload.token);
+      state.favoriteList = getStorage(favoriteListKey) || [];
       state.userInfo = payload.userInfo;
     },
     logout(state) {
       clearStorage(config._userInfoKey_);
-      clearStorage(config._loginToken_);
+      clearStorage(config._loginToken_); 
       state.userInfo = {};
+      state.favoriteList = [];
     }
   }, 
   actions: {
