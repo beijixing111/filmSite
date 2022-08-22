@@ -58,7 +58,7 @@ const onClick = (e) => {
   align-items: center;
   border-radius: 0.5rem;  
   color: #fff; 
-  font-size: 0.34rem; 
+  font-size: 0.3rem; 
   background: linear-gradient(90deg,#fab3b3,#ffbcb3 73%,#ffcaba);
   /* background-image: linear-gradient(90deg,#fab3b3,#ffbcb3 73%,#ffcaba); */
 

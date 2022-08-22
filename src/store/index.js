@@ -6,6 +6,7 @@ import * as config from '../common/config/index';
 
 // 收藏接口未开发好, 收藏数据暂存本地
 // 模拟请求时间
+
 const testTime = 300; //毫秒
 
 const runToast = (msg, time = 3) => {

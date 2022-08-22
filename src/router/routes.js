@@ -27,7 +27,7 @@ export default [
       name: 'film-detail',  
       component: () => import('../views/film/detail'),
       meta: {
-        title: '电影-详情页'
+        title: ''
       }
     },  
     {
@@ -51,7 +51,8 @@ export default [
       name: 'favorite',
       component: () => import('../views/favorite/index.vue'),
       meta: {
-        title: '我的收藏'
+        title: '我的收藏',
+        isAuth: true
       }
     },
     {

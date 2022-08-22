@@ -48,10 +48,11 @@ const getVideoSuffix = (filmUrl) => {
 const detailData = async () => {
   // loading.value = true; 
   let res = await Api.getFilmDetail(id);
-  console.log(res);
+  // console.log(res);
   if(res.errorCode == 0) { 
     filmData.value = res.data; 
     filmType.value = getVideoSuffix(res.data.filmUrl);
+    document.title = '电影：' + res.data.filmName;
   }
   loading.value = false;
 }

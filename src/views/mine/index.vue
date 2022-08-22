@@ -49,13 +49,19 @@
       <div class="box">此处功能，需要登录后才能查看！</div>
     </div>
 
-    <div class="ptip" v-if="!isLogin">
+    <div class="pro" v-if="!isLogin">
       <h3>关于本项目</h3>
-      <p>本项目为Vue3 全家桶体验项目</p>  
-      <p>后端node.js，部分接口还在开发中</p>
-      <p>如有bug，纯属正常</p>
+      <p>本项目为Vue3 全家桶体验项目后端node.js，部分接口还在开发中</p> 
       <p>项目地址：</p>
       <p><a :href="gitAdr" target="_blank">{{gitAdr}}</a></p>
+    </div>
+
+    <div class="pro" v-if="!isLogin">
+      <h3>React hooks + TS 重构h5（未完）</h3> 
+      <p>项目重构地址：</p>
+      <p><a :href="reactUrl" target="_blank">{{reactUrl}}</a></p>
+      <p>旧项目（react + redux）地址：</p>
+      <p><a :href="oldReactUrl" target="_blank">{{oldReactUrl}}</a></p>
     </div>
     <!-- <van-button type="primary" @click="onTest">登录</van-button> -->
   </div>
@@ -88,6 +94,9 @@ const goLogin = () => {
 }
 
 const gitAdr = 'https://github.com/beijixing111/filmSite';
+
+const reactUrl = 'https://github.com/beijixing111/hooks_Jdapp';
+const oldReactUrl = 'https://github.com/beijixing111/jdapp';
 
 const goLogout = () => {
   Dialog.confirm({
@@ -214,26 +223,27 @@ $linkColor: #03a9f4;
     display: flex;
     justify-content: center;
     align-items: center; 
-    height: 4rem;
+    height: 2rem;
     padding: 0.4rem 0; 
     font-size: 0.36rem;
     color: #888;
   }
 }
-.ptip{
+.pro{
   background: #fff;
   padding: 0.25rem;
-  text-align: center;
+  text-align: left;
   font-size: 0.3rem;
   color: #666; 
+  margin: 10px 0.25rem;
   h3{  
-    font-size: 0.34rem;
+    font-size: 0.3rem;
     color: #333;
     margin-bottom: 0.2rem;
   }
   p{ 
-    font-size: 0.3rem; 
-    padding: 0.15rem 0; 
+    font-size: 0.28rem; 
+    padding: 0.1rem 0; 
     a{
       color: $linkColor;
     }

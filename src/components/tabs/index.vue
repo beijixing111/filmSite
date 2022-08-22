@@ -58,14 +58,16 @@ const onBack = () => {
     left: 0.25rem;
     bottom: 0.3rem;
     width: 1rem;
+    max-width: 50px;
     height: 1rem;
+    max-height: 50px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0, 0.2);
+    background: rgba(0,0,0, 0.1);
     i{
-      font-size: 0.4rem;
+      font-size: 16px;
       color: #fff;
     }
   }

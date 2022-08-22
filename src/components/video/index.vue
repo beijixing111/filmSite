@@ -125,9 +125,6 @@ export default defineComponent({
       progressTimerId.value = setInterval(playing, 1000);
     }
     
-     // watchEffect(() => {
-
-    // });
 
     // hls 流播放
     const hlsPlayRun = () => {
@@ -362,6 +359,7 @@ $margin: 0.25rem;
   position: relative;
   width: 100%;
   height: 4.26rem;
+  max-height: 340px;
   background: #000;
   overflow: hidden;
   margin: 0 auto;
