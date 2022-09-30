@@ -120,7 +120,7 @@ export default defineComponent({
 
     const videoPlay = () => {
       hlsVideo.value.play();  
-      isPlay.value = true;  
+      isPlay.value = true;
       ctx.emit('play');
       progressTimerId.value = setInterval(playing, 1000);
     }
@@ -134,8 +134,12 @@ export default defineComponent({
           isHlsLoad.value = true;
           hls.attachMedia(hlsVideo.value);
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            console.log('加载成功', Hls.Events);
             videoPlay();
           });
+          // hls.on(Hls.Events.FRAG_LOADED, () => {
+          //   console.log('FRAG_LOADED，片段加载完成');
+          // });
           hls.on(Hls.Events.ERROR, (event, data) => {
             // 监听出错事件
             console.log('加载失败', event, data);
@@ -236,12 +240,16 @@ export default defineComponent({
     }
 
     const playing = () => { 
-      loadError.value = false;
+      loadError.value = false; 
       let videoEl = hlsVideo.value; 
       // console.log('playing', videoEl.paused);
       if(videoEl.paused){
         return;
       }
+      isPlay.value = true;  
+      loadError.value = false;
+      isLoad.value = 0;
+
       let scale = videoEl.currentTime / videoEl.duration; 
       if(videoEl.buffered.length != 0){
         let scaleSuc = videoEl.buffered.end(0) / videoEl.duration; 
@@ -256,7 +264,7 @@ export default defineComponent({
 
     let downX = 0, downL = 0, scale = 0;
     const onTouchStart = (ev) => {
-      if(isM3u8Url.value) return;
+      // if(isM3u8Url.value) return;
       hlsVideo.value.pause(); 
       progressTimerId.value = null; 
       clearInterval(progressTimerId.value); 
@@ -268,7 +276,7 @@ export default defineComponent({
     }
 
     const onTouchMove = (ev) => { 
-      if(isM3u8Url.value) return;
+      // if(isM3u8Url.value) return;
       let pageX = ev.changedTouches ? ev.changedTouches[0].pageX : ev.pageX; 
       scale = (pageX - downX + downL ) / ev.target.parentNode.offsetWidth;
       if(scale < 0) {
@@ -283,7 +291,7 @@ export default defineComponent({
     }
     const onTouchEnd = (ev) => {
       // console.log(ev);
-      if(isM3u8Url.value) return;
+      // if(isM3u8Url.value) return;
       hlsVideo.value.currentTime = scale * hlsVideo.value.duration;
       downX = 0;
       downL = 0;

@@ -88,3 +88,13 @@ export const clearStorage = (key, type = 1) => {
   const storage = window[typeStr];
   storage.removeItem(key);
 }
+
+export const formatMoneyNumber = (val) => {
+  //金额转换 分->元 保留2位小数 并每隔3位用逗号分开 1,234.56
+  var str = Number(val).toFixed(2) + '';
+  // console.log(str);
+  var intSum = str.substring(0,str.indexOf(".")).replace( /\B(?=(?:\d{3})+$)/g, ',' );//取到整数部分
+  var dot = str.substring(str.length,str.indexOf("."))//取到小数部分搜索
+  var ret = intSum + dot;
+  return ret;
+}
