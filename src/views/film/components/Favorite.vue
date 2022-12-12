@@ -1,6 +1,6 @@
 <template>
-  <span v-if="allfavNumber">{{ allfavNumber }}</span>
   <i class="fi fi-star fav " :class="[isFav ? 'fav-actived' : '']" @click="onFavorite"></i>
+  <span v-if="allfavNumber">{{ allfavNumber }}</span>
 </template>
 
 <script setup >
@@ -81,7 +81,7 @@ $favColor: #f46b84;
 
 .fav{
   color: #ccc;
-  font-size: 0.46rem;
+  font-size: 0.38rem;
   &.fav-actived{
     color: $favColor;
   }
@@ -90,6 +90,6 @@ span{
   color: #888;
   margin-right: 0.1rem;
   font-size: 0.32rem;
-  margin-left: 0.2rem;
+  margin-left: 0.05rem;
 }
 </style>

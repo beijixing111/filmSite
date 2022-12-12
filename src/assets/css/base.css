@@ -194,6 +194,9 @@ transition: all .4s ease;
 transform: translateX(100px);
 opacity: 0;
 }
+input::placeholder{
+  color: #ccc;
+}
 body{
   max-width: 600px;
   margin: 0 auto;

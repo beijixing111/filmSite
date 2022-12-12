@@ -2,17 +2,18 @@
   <div>
     <router-view  v-slot="{ Component, route }"> 
       <keep-alive >
-        <component v-if="route.meta.keepAlive" :is="Component" :key="route.meta.keepAlive ? route.path : undefined" />
+        <component v-if="route.meta.keepAlive" :is="Component" :key="route.path" />
       </keep-alive>
       <component v-if="!route.meta.keepAlive" :is="Component" />
       <!-- <component  :is="Component" :key="route.path" /> -->
     </router-view>
-    <MyTabs /> 
-
     
-    <van-dialog overlay v-model:show="show" title="手机访问体验更佳" v-if="!isMobileAgent" @confirm="onConfirm">
+    <MyTabs /> 
+    
+    <van-dialog overlay v-model:show="show" title="" v-if="!isMobileAgent" @confirm="onConfirm">
       <div style="text-align: center; padding: 10px; ">
-        <img :src="codeImage" width="130" />
+        <!-- <img :src="codeImage" width="130" /> -->
+        <p style="padding: 30px 0;">手机端访问体验更佳</p>
       </div>
     </van-dialog> 
     
@@ -29,7 +30,7 @@ import MyTabs from './components/tabs/index';
 import { isWechat } from './common/utils';
 import { isMobile } from './common/utils';
 const VanDialog = Dialog.Component;
-import codeImage from './assets/images/erweima.png';
+// import codeImage from './assets/images/erweima.png';
 
 const height = ref(0);
 if(isWechat()){

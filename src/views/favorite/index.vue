@@ -73,7 +73,7 @@ const onAllClear = () => {
     total.value = 0;
   })
   .catch(() => {
-    console.lgo('取消！');
+    console.log('取消！');
   }); 
 }
 

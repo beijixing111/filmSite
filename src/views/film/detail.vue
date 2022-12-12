@@ -12,9 +12,17 @@
         <div class="fav-box">
           <Favorite :favId='filmData.id' :favFilmName='filmData.filmName' :favNum='filmData.filmHeat' />
         </div>
-        <h3 class="title">电影名：{{filmData.filmName}}</h3> 
-        <p>电影类型：<FilmType :type='filmData.filmType' /></p>
-        <p>资源类型：{{filmType}}</p>
+        <div class="userinfo">
+          <van-image class="img-box"
+            round lazy-load :src="filmData.mimyz_user.avatar || posterUrl" fit="cover"
+          />
+          <div class="nickname">
+            <span>{{filmData.mimyz_user.nickName}}</span>
+          </div>
+        </div>
+        <h3 class="title">电影名：{{filmData.filmName}}</h3>  
+        <p>电影类型：<FilmType :type='4 || filmData.filmType' /></p>
+        <!-- <p>资源类型：{{filmType}}</p> -->
         <p>电影简介：</p>
         <p class="indent">{{filmData.filmDesc || '无'}}</p>
       </div>
@@ -34,8 +42,6 @@ import FilmType from './components/FilmType';
 
 // const store = useStore();
 const route = useRoute(); 
-
-let { id } = route.query;
 let loading = ref(true);
 let filmData = ref(null); 
 const filmType = ref('');
@@ -45,6 +51,7 @@ const getVideoSuffix = (filmUrl) => {
   let suffixIndex = filmUrl.lastIndexOf('.');
   return filmUrl.substr(suffixIndex + 1);
 }
+
 const detailData = async () => {
   // loading.value = true; 
   let res = await Api.getFilmDetail(id);
@@ -56,7 +63,23 @@ const detailData = async () => {
   }
   loading.value = false;
 }
-detailData();
+
+let { id, detail } = route.query;
+if(detail){
+  detail = JSON.parse(decodeURIComponent(detail));
+  // console.log(detail);
+  filmData.value = detail; 
+  filmType.value = getVideoSuffix(detail.filmUrl);  
+  document.title = '电影：' + detail.filmName;
+  loading.value = false;
+} else {
+  if(process.env.NODE_ENV === 'development'){
+    Toast('模拟接口不再实现');
+  } else {
+    detailData();
+  }
+}
+
 
 // const filmData = store.state.filmList.find(item => item.id === Number(id));
 
@@ -71,11 +94,31 @@ const onFullScreen = () => {
 
 <style lang="scss" scoped> 
 .film-detail{
-  min-height: 5rem;
+  min-height: 100vh;
+  overflow: auto;
+  background: #f8f8f8;
 }
 .loading-box{
   text-align: center;
   padding: 0.25rem 0;
+}
+.userinfo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.15rem;
+  .img-box{
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.2rem;
+  } 
+  .nickname{
+    color: #333;
+    font-size: 0.28rem;
+    span{
+      margin-right: 0.15rem;
+    }
+  }
 }
 .film-desc{
   padding: 0.2rem;
@@ -93,7 +136,7 @@ const onFullScreen = () => {
     top: 0.2rem;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    /* align-items: center; */
   }
   p{
     font-size: 0.28rem; color: #888;

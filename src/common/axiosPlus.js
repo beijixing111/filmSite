@@ -4,7 +4,8 @@
  import axios from 'axios' 
  import { Toast } from 'vant';
  import { getApiUrl, _timeout_, _siteName_, _loginToken_ } from './config';
- import { getStorage } from '../common/utils'
+ import { getStorage } from '../common/storage';
+//  import store from '../store';
  
  // axios 配置
  axios.defaults.timeout = _timeout_;
@@ -13,6 +14,8 @@
  axios.defaults.baseURL = getApiUrl();
  
  const Indicator = {};
+
+// console.log(store);
  
  // 是否显示loading动画
  // function showIndicator(bool) {
@@ -59,7 +62,7 @@ axios.interceptors.response.use(
   },
   err => {
     Indicator.clear && Indicator.clear(); // 结束loading加载
-    // console.log(err);
+    console.log(err);
     if (err && err.response) {
       switch (err.response.status) {
         case 400:

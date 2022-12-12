@@ -6,10 +6,10 @@ export const _timeout_ = 1000 * 60; // 接口等待时长
 export const favoriteListKey = 'favoriteList'; //缓存收藏key
 
 // 接口地址
-export const baseUrl = '';
-export const proUrl = '';
+export const baseUrl = 'https://mock.mengxuegu.com/mock/6396f57f2e0f396e51a5c570/mimyz_mock';
+export const proUrl = 'https://mock.mengxuegu.com/mock/6396f57f2e0f396e51a5c570/mimyz_mock';
 
 // 接口地址
 export const getApiUrl = () => {
- return process.env.NODE_ENV == "development" ? baseUrl : proUrl;
+ return process.env.NODE_ENV === "development" ? baseUrl : proUrl;
 }

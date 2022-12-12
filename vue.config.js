@@ -12,14 +12,22 @@ module.exports = defineConfig({
         resolvers: [VantResolver()],
       }),
     ],
+    resolve: {
+      fallback: { 
+        "url": false,
+        "https": false,
+        "http": false 
+      },
+
+    }
   },
   devServer: {
 		host: '0.0.0.0',
 		port: '8080',
     proxy: {
       "/api": {  
-        target: 'https://mimyz.com',
-        // target: 'http://localhost:3000',
+        // target: 'https://mimyz.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         ws: true,
         // pathRewrite: {

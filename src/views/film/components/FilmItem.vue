@@ -9,12 +9,12 @@
     <div class="film-footer">
       <div class="le">
         <van-image class="img-box"
-          round lazy-load :src="posterUrl" fit="cover"
+          round lazy-load :src="film.mimyz_user.avatar || posterUrl" fit="cover"
         />
         <div class="film-desc">
-          <span>电影类型：<FilmType :type='film.filmType' /></span>
+          <!-- <span>电影类型：<FilmType :type='film.filmType' /></span> -->
+          <span>{{film.mimyz_user.nickName}}</span>
         </div>
-        
       </div>
       <div class="rig">
         <Favorite :favId='film.id' :favFilmName='film.filmName' :favNum='film.filmHeat' />
@@ -28,13 +28,12 @@
 import { defineComponent, ref } from 'vue'; 
 import { useRouter } from 'vue-router';  
 import Favorite from './Favorite'; 
-import FilmType from './FilmType';
+// import FilmType from './FilmType';
 // import { useStore } from 'vuex';
 export default defineComponent({
   name: 'film-card', 
   components: {
     Favorite,
-    FilmType
   }, 
   props: {
     film: {
@@ -45,7 +44,7 @@ export default defineComponent({
   setup(props) {  
     // console.log(props.film);
     const router = useRouter();  
-    const posterUrl = ref('https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg');
+    const posterUrl = ref('https://hbimg.huabanimg.com/2dbbc9177be8b9912b2a0d881200dd47ccb84d92710aa-IepOs1_fw658');
   
     const goDetail = () => {
       // console.log('/film/', props.film.id);
@@ -53,7 +52,7 @@ export default defineComponent({
       router.push({
         path: `/filmdetail/${id}`,
         query: {
-          id: id
+          detail: encodeURIComponent(JSON.stringify(props.film))
         }
       }); 
     }
@@ -88,7 +87,7 @@ export default defineComponent({
     width: 100%; 
     padding: 0.15rem 0.2rem;
     font-size: 0.34rem;
-    color: #f4f4f4;
+    color: #888;
     font-weight: bolder;
   }
   .poster-box{
@@ -96,6 +95,9 @@ export default defineComponent({
     height: 4.26rem; 
     position: relative;
     overflow: hidden;
+    .poster{
+      height: 100%; 
+    }
     /* box-shadow: inset 0 0.16rem 0.2rem #ccc,
                 inset 0 -0.16rem 0.2rem #ccc,
                 inset -0.16rem 0 0.2rem #ccc,
@@ -127,7 +129,7 @@ export default defineComponent({
     .rig{
       display: flex;
       justify-content: flex-end;
-      align-items: center; 
+      /* align-items: center;  */
     }
   }
 

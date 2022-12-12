@@ -47,6 +47,14 @@ export default [
       }
     },
     {
+      path: '/register',
+      name: 'register',  
+      component: () => import('../views/register/index.vue'),
+      meta: {
+        title: '注册'
+      }
+    },
+    {
       path: '/favorite',
       name: 'favorite',
       component: () => import('../views/favorite/index.vue'),
@@ -55,6 +63,11 @@ export default [
         isAuth: true
       }
     },
+    // {
+    //   path: '/pdfView',
+    //   name: 'pdfView',
+    //   component: () => import('../views/pdf/index.vue'),
+    // },
     {
       path: '/:pathMatch(.*)*',
       name: 'notfound',

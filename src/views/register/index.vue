@@ -1,7 +1,7 @@
 <template>
   <div class="login-content">
-    <h3>登&nbsp;&nbsp;&nbsp;&nbsp;录</h3>
-    <form>
+    <h3>注&nbsp;&nbsp;&nbsp;&nbsp;册</h3>
+    <form style="margin-bottom: 50px;">
       <div class="login-item">
         <input type="text" placeholder="用户名" 
           v-model='userName' autoComplete="off"  
@@ -12,8 +12,8 @@
         >×</i>
       </div>
       <!-- <p style="font-size: 14px; color: #999">{{userName}}</p> -->
-      <div class="login-item mar">
-        <input type="password" class="password" placeholder="请输入密码" 
+      <div class="login-item ">
+        <input type="password" placeholder="请输入密码" 
           v-model='password' autoComplete="off" 
           @focus='onPwdFocus'
           @blur='onPwdBlur'
@@ -23,19 +23,26 @@
           :style="{display: password.length > 0 ? 'flex' : 'none'}"
           @click='onClearPassword'
         >×</i>
-        <a class="forget-pw" @click="forget">忘记密码？</a>
       </div>
-      <p style="text-align: right; padding: 20px;">
-        <!-- <router-link to="/register" style="color: #03a9f4;">去注册</router-link> -->
-      </p>
+      <!-- <div class="login-item">
+        <input type="password" class="password" placeholder="请输入确认密码" 
+          v-model='surePwd' autoComplete="off" 
+          @focus='onPwdFocus'
+          @blur='onPwdBlur'
+        />
+        <div class="line"></div>
+        <i class="clear rig" 
+          :style="{display: password.length > 0 ? 'flex' : 'none'}"
+          @click='onClearPassword'
+        >×</i>
+      </div> -->
     </form>
 
     <div style="padding: 0.3rem;">
       <BigBtn :disabled='!highlight' 
-        background="#f86698" @click="onLogin" 
+        background="#f86698" @click="onRegister" 
         style="margin-bottom: 0.4rem" 
-      />
-      <BigBtn background="#686363" @click="onFill">一键填充账号密码</BigBtn>
+      >提&nbsp;&nbsp;&nbsp;&nbsp;交</BigBtn>
     </div>
 
   </div>
@@ -44,20 +51,21 @@
 <script setup> 
 
 import { ref, watch } from 'vue'; 
-import { useRouter, useRoute } from 'vue-router';
+// import { useRouter, useRoute } from 'vue-router';
 
-import { useStore } from 'vuex';
+// import { useStore } from 'vuex';
 import { Toast } from 'vant'
 import { BigBtn } from '../../components/buttons';
 import * as Api from './api'; 
 
 const userName = ref('');
 const password = ref(''); 
+// const surePwd = ref(''); 
 const highlight = ref(false);
 
-const router = useRouter();
-const route = useRoute();
-const store = useStore();
+// const router = useRouter();
+// const route = useRoute();
+// const store = useStore();
 
 const onPwdBlur = () => {
   // IOS键盘收起后，页面滚动对应位置
@@ -78,49 +86,43 @@ const onClearPassword = () => {
 }
 
 watch(userName, (cur) => {
-  // console.log(cur);
+  console.log(cur);
   highlight.value = cur.length > 0 && password.value.length > 0;
 });
 
 watch(password, (cur) => {
-  // console.log(cur);
+  console.log(cur);
   highlight.value = cur.length > 0 && password.value.length > 0;
 });
 
-const onFill = () => {
-  userName.value = 'test';
-  password.value = '123456';
-}
-
-const onLogin = async () => {
+const onRegister = async () => {
   if (!password.value || password.value.length < 6) {
     return Toast('密码不能为空且长度不能小于6位！');
   }
 
   try {
-    const tLoading = Toast.loading({
-      message: '登录中...',
+    const tLoading = Toast.loading({ 
       forbidClick: true,
       loadingType: 'spinner',
     });
     let res = await Api.login({
       userName: userName.value,
-      password: password.value
+      password: password.value,
+      gender: 1
     }); 
     tLoading.clear();
     if(res.errorCode == 0) {
       console.log(res); 
-      store.commit('login', res.data);
-      const query = route.query;
-      let path = query.redirectPath ? query.redirectPath : '/mine';
-      router.replace(path);
+      Toast('恭喜你，注册成功！');
+      // store.commit('login', res.data);
+      // const query = route.query;
+      // let path = query.redirectPath ? query.redirectPath : '/mine';
+      // router.replace(path);
     }
   } catch (err) {
     console.log(err);
   }
 }
-
-const forget = () => Toast('未实现！');
 
 
 </script>
@@ -157,15 +159,8 @@ input{
 			width: 100%; height: 100%; 
 			outline: none; box-shadow: none;
 			border: none; 
-      &.password{
-        width: 80%;
-        margin-right: 20%;
-      }
 			&::-webkit-placeholder{
-				font-size: 0.3rem; color: #666;
-			}
-      &::placeholder{
-				font-size: 0.3rem; color: #666;
+				font-size: 14px; color: #888;
 			}
 			&:-webkit-autofill{
 				box-shadow: 0 0 0px 1000px white inset; 
@@ -190,9 +185,6 @@ input{
 			justify-content: center; cursor: pointer;
       align-items: flex-end;  
 			font-size: 20px; color: #ccc;
-			&.rig{
-				right: 1.75rem;
-			}
 		}
 		.forget-pw{
 			position: absolute; right: 0;  
