@@ -1,6 +1,6 @@
 # mimyz_h5
 
-## Project setup11
+## Project setup
 ```
 yarn install
 ```
