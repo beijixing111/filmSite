@@ -29,7 +29,7 @@ export const isMobile = () => {
 export const formatTime = (num) => {
   num = Math.round(num);
   if(num < 60){
-    return formatNumber(num);
+    return ['00', formatNumber(num)].join(':');
   }
   let hour = 0, min = 0, sec=0;
   const arr = [];

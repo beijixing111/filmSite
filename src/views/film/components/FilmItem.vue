@@ -97,6 +97,7 @@ export default defineComponent({
     overflow: hidden;
     .poster{
       height: 100%; 
+      width: 100%;
     }
     /* box-shadow: inset 0 0.16rem 0.2rem #ccc,
                 inset 0 -0.16rem 0.2rem #ccc,
