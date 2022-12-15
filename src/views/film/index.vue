@@ -1,5 +1,6 @@
 <template>
   <div class="film-page">
+    <Banner />
     <van-list
       @load="onLoad"
       v-model:loading="loading"
@@ -22,6 +23,7 @@
 import { ref } from 'vue';
 import * as Api from './api';
 import FilmItem from './components/FilmItem';
+import Banner from './components/Banner';
 import { useStore } from 'vuex';
 import { onActivated } from 'vue'; 
 

@@ -64,7 +64,9 @@ const detailData = async () => {
   loading.value = false;
 }
 
-let { id, detail } = route.query;
+let { detail } = route.query;
+let { id } = route.params;
+// console.log(id);
 if(detail){
   detail = JSON.parse(decodeURIComponent(detail));
   // console.log(detail);

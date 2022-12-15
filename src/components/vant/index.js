@@ -1,6 +1,7 @@
-import { Tabbar, TabbarItem, Button, List, Image as VanImage, Lazyload, Toast, Loading, Dialog} from 'vant';
+import { Tabbar, TabbarItem, Button, List, Image as VanImage, Lazyload, 
+  Toast, Loading, Dialog, Swipe, SwipeItem} from 'vant';
 
-
+ 
 const vantComponents = [
   Tabbar, 
   TabbarItem,
@@ -10,7 +11,9 @@ const vantComponents = [
   Lazyload,
   Toast,
   Loading,
-  Dialog
+  Dialog,
+  Swipe, 
+  SwipeItem
 ];
 
 export default vantComponents;

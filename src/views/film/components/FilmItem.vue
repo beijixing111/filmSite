@@ -48,7 +48,7 @@ export default defineComponent({
   
     const goDetail = () => {
       // console.log('/film/', props.film.id);
-      const {id } = props.film;
+      const { id } = props.film;
       router.push({
         path: `/filmdetail/${id}`,
         query: {

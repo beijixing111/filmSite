@@ -3,7 +3,10 @@ const { VantResolver } = require('unplugin-vue-components/resolvers');
 const ComponentsPlugin = require('unplugin-vue-components/webpack');
 // const timestamp = Date.now(); //给打包后的资源添加时间戳
 
+// const gitBaseUrl = 'https://beijixing111.github.io/showFilm/';
+
 module.exports = defineConfig({
+  publicPath: '/',
   transpileDependencies: true,
   productionSourceMap: false,
   configureWebpack: {

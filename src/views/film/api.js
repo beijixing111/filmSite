@@ -1,6 +1,12 @@
 import { get  } from '@/common/fetch' 
 
 
+export const getBannerList = (data) => {
+  const apiName = '/api/page/banner';
+  // console.log(apiName); 
+  return get(apiName, data);
+}
+
 export const getFilmList = (data) => {
   const apiName = '/api/page/film';
   // console.log(apiName); 

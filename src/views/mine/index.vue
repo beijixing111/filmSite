@@ -59,9 +59,14 @@
       <p>项目地址：</p>
       <p><a :href="gitAdr" target="_blank">{{gitAdr}}</a></p>
     </div>
+
+    <div class="pro" v-if="!isLogin">
+      <h3>同款功能项目uni-app微信小程序</h3> 
+      <p><a :href="uniWxUrl" target="_blank">{{uniWxUrl}}</a></p>
+    </div>
+
     <div class="pro" v-if="!isLogin">
       <h3>React 18 SSR + redux + scss</h3>
-      <p>项目地址：</p>
       <p><a :href="ssrUrl" target="_blank">{{ssrUrl}}</a></p>
     </div>
     <div class="pro" v-if="!isLogin">
@@ -72,13 +77,6 @@
       <p><a :href="oldReactUrl" target="_blank">{{oldReactUrl}}</a></p>
     </div>
 
-    <div class="pro" v-if="!isLogin">
-      <h3>React hooks + TS 重构h5</h3> 
-      <p>项目重构地址：</p>
-      <p><a :href="reactUrl" target="_blank">{{reactUrl}}</a></p>
-      <p>旧项目（react + redux）地址：</p>
-      <p><a :href="oldReactUrl" target="_blank">{{oldReactUrl}}</a></p>
-    </div>
     <!-- <van-button type="primary" @click="onTest">登录</van-button> -->
   </div>
 </template>
@@ -111,6 +109,7 @@ const goLogin = () => {
 }
 
 const gitAdr = 'https://github.com/beijixing111/filmSite';
+const uniWxUrl = 'https://github.com/beijixing111/uni-filmCode';
 const ssrUrl = 'https://github.com/beijixing111/ssr-react';
 
 const reactUrl = 'https://github.com/beijixing111/hooks_Jdapp';
