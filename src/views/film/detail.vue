@@ -25,13 +25,14 @@
         <!-- <p>资源类型：{{filmType}}</p> -->
         <p>电影简介：</p>
         <p class="indent">{{filmData.filmDesc || '无'}}</p>
+        <AsyncTest />
       </div>
     </div>
   </div>
 </template>
 
 <script setup> 
-import { ref } from 'vue'; 
+import { ref, defineAsyncComponent} from 'vue'; 
 import { useRoute } from 'vue-router';
 // import { useStore } from 'vuex';
 import { Toast } from 'vant';
@@ -39,6 +40,8 @@ import * as Api from './api';
 import MimyzVideo from '@/components/video/index';
 import Favorite from './components/Favorite';
 import FilmType from './components/FilmType';
+
+const AsyncTest = defineAsyncComponent(() => import("./components/AsyncTest"));
 
 // const store = useStore();
 const route = useRoute(); 

@@ -63,12 +63,13 @@ const onLoad = async () => {
     }
     
     let res = await Api.getFilmList(params);
-    console.log(res);
+    // console.log(res);
     isLoad.value = false;
     const {errorCode, data} = res;
     if(errorCode == 0){
       dataList.value = dataList.value.concat(data.filmList);
       total.value = data.total;
+      finished.value = true;
       // 缓存一下filmList 
       store.commit('cacheFilmList', dataList.value);
     }

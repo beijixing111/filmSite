@@ -24,19 +24,20 @@ const landingData = ref(null);
 const loading = ref(false);
 const route = useRoute();
 
-const getLandingData =  async () => {
+const getLandingData = async () => {
   const {id} = route.params; 
   console.log(id);
   loading.value = true;
   try{ 
     // 
+    let picUrl = 'https://s3.bmp.ovh/imgs/2023/02/08/714a1efeb76cd58c.png';
     landingData.value = {
       title: '阿凡达2',
       desc: '阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2阿凡达2。',
       imgages: [
         {
           id: 1,
-          url: 'http://rmu89zvzr.hn-bkt.clouddn.com/banner/banner1.png?e=1670949267&token=r1zA0s9aSg5l0kMbkEeawshegh_gyTrgOj1z5lMJ:nseJmSpRYZewVm7OdB0Av7tNQbQ='
+          url: picUrl
         }
       ],
       videoUrl: ''
@@ -45,7 +46,7 @@ const getLandingData =  async () => {
   }catch(err) {
     console.log(err);
   }
-}
+};
 getLandingData();
 
 </script>

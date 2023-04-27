@@ -1,6 +1,6 @@
 import Film from "../views/film/index";
 import NotFound from "../views/notfound";
-
+// import { defineAsyncComponent } from 'vue';
 // {
 //   path: '/film',
 //   name: 'film',

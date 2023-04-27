@@ -20,17 +20,21 @@
         <Favorite :favId='film.id' :favFilmName='film.filmName' :favNum='film.filmHeat' />
       </div>
     </div>
+    
   </div>
 </template>
 
-<script> 
+<script > 
 
-import { defineComponent, ref } from 'vue'; 
+import { ref } from 'vue'; 
 import { useRouter } from 'vue-router';  
-import Favorite from './Favorite'; 
+import Favorite from './Favorite';  
+
 // import FilmType from './FilmType';
 // import { useStore } from 'vuex';
-export default defineComponent({
+const posterSrc = 'https://hbimg.huabanimg.com/2dbbc9177be8b9912b2a0d881200dd47ccb84d92710aa-IepOs1_fw658';
+
+export default {
   name: 'film-card', 
   components: {
     Favorite,
@@ -44,8 +48,8 @@ export default defineComponent({
   setup(props) {  
     // console.log(props.film);
     const router = useRouter();  
-    const posterUrl = ref('https://hbimg.huabanimg.com/2dbbc9177be8b9912b2a0d881200dd47ccb84d92710aa-IepOs1_fw658');
-  
+    const posterUrl = ref(posterSrc);
+
     const goDetail = () => {
       // console.log('/film/', props.film.id);
       const { id } = props.film;
@@ -59,10 +63,10 @@ export default defineComponent({
 
     return {  
       posterUrl,
-      goDetail,
+      goDetail
     };
-  }
-})
+  },
+};
 </script>
 
 <style lang="scss" scoped>
